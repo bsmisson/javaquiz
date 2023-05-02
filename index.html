@@ -7,12 +7,29 @@
     <title>Javascript Quiz</title>
 </head>
 <body>
-    <div class ="container">
-        <div id="home" class="flex-center flex-column">
-            <h1> Javascript Quiz</h1>
-            <a class="btn" href="/game.html">Play</a>
-            <a class="btn" href="/highscores.html">High Scores</a>
-        </div>
+    <div class ="start-screen">
+        <button id="start-button">Start</button>
     </div>
+    <div id="display-container">
+        <div class="header">
+            <div class="number-of-count">
+                <span class="number-of-questions">
+                    1 out of 10 questions
+                </span>
+            </div>
+            <div class="timer-div">
+                <img src="###" alt="" width="20px">
+                <span class="time-left">10s</span>
+            </div>
+        </div>
+        <div id="container"></div>
+        <!-- <------Questions and options----->
+
+    </div>
+    <div class="score-container hide">
+        <div id="user-core">Score</div>
+        <button id="Start"></button>
+    </div>
+
 </body>
 </html>
