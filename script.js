@@ -17,7 +17,7 @@ const quizArray = [
   {
     id: "0",
     question: "Inside which HTML element do we put the JavaScript?",
-    options: ["<script>", "<js>", "<scripting>", "<javascript>"],
+    options: ["/<script>/", "</js>", "<scripting>", "<javascript>",],
     correct: "<script>",
   },
   {
@@ -56,7 +56,7 @@ const quizArray = [
   {
     id: "4",
     question: "The external JavaScript file must contain the <script> tag.",
-    options: ["True", "False"],
+    options: ["True", "False", "IDK", "N/A"],
     correct: "False",
   },
   {
@@ -123,7 +123,7 @@ nextBtn.addEventListener(
         "Your score is" + scoreCount + "out of" + questionCount;
     } else {
       countOfQuestion.innerHTML =
-        questionCount + 1 + "of" + quizArray.length + "Question";
+        questionCount + 1 + " of " + quizArray.length + " Questions";
       quizDisplay(questionCount);
       count = 11;
       clearInterval(countdown);
@@ -159,7 +159,7 @@ function quizCreator() {
     let div = document.createElement("div");
     div.classList.add("container-mid", "hide");
 
-    countOfQuestion.innerHTML = 1 + " of " + quizArray.length + "Question";
+    countOfQuestion.innerHTML = 1 + " of " + quizArray.length + " Questions";
 
     let question_DIV = document.createElement("p");
     question_DIV.classList.add("question");
