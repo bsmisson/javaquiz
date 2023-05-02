@@ -1,9 +1,9 @@
 let timeLeft = document.querySelector(".time-left");
 let quizContainer = document.getElementById("container");
 let nextBtn = document.getElementById("next-button");
-let countOfQuestion = document.querySelector("number-of-question");
+let countOfQuestion = document.querySelector(".number-of-questions");
 let displayContainer = document.getElementById("display-container");
-let scoreContainer = document.querySelector(".scorecontainer");
+let scoreContainer = document.querySelector(".score-container");
 let restart = document.getElementById("restart");
 let userScore = document.getElementById("user-score");
 let startScreen = document.querySelector(".start-screen");
@@ -68,7 +68,7 @@ const quizArray = [
       "msg('Hello World');",
       "alertBox('Hello World');",
     ],
-    correct: "alert('Hello World')",
+    correct: "alert('Hello World');",
   },
   {
     id: "6",
@@ -169,13 +169,7 @@ function quizCreator() {
     div.innerHTML += `<button class ="option-div" onclick="checker(this)">${i.options[0]}</button>
         <button class ="option-div" onclick="checker(this)">${i.options[1]}</button>
         <button class ="option-div" onclick="checker(this)">${i.options[2]}</button>
-        <button class ="option-div" onclick="checker(this)">${i.options[3]}</button>
-        <button class ="option-div" onclick="checker(this)">${i.options[4]}</button>
-        <button class ="option-div" onclick="checker(this)">${i.options[5]}</button>
-        <button class ="option-div" onclick="checker(this)">${i.options[6]}</button>
-        <button class ="option-div" onclick="checker(this)">${i.options[7]}</button>
-        <button class ="option-div" onclick="checker(this)">${i.options[8]}</button>
-        <button class ="option-div" onclick="checker(this)">${i.options[9]}</button>`;
+        <button class ="option-div" onclick="checker(this)">${i.options[3]}</button>`;
     quizContainer.appendChild(div);
   }
 }
@@ -184,4 +178,43 @@ function checker(userOption) {
   let userSolution = userOption.innerText;
   let question =
     document.getElementsByClassName("container-mid")[questionCount];
+  let options = question.querySelectorAll("option-div");
+
+  if (userSolution === quizArray[questionCount].correct) {
+    userOption.classList.add("correct");
+    scoreCount++;
+  } else {
+    userOption.classList.add("incorrect");
+    options.forEach((element) => {
+      if ((element.innerText = quizArray[questionCount].correct)) {
+        element.classList.add("correct");
+      }
+    });
+  }
+  clearInterval(countdown);
+  options.forEach((element) => {
+    element.diabled = true;
+  });
 }
+
+function initial() {
+  quizContainer.innerHTML = "";
+  questionCount = 0;
+  scoreCount = 0;
+  count = 11;
+  clearInterval(countdown);
+  timerDisplay();
+  quizCreator();
+  quizDisplay(questionCount);
+}
+
+startButton.addEventListener("click", () => {
+  startScreen.classList.add("hide");
+  displayContainer.classList.remove("hide");
+  initial();
+});
+
+window.onload = () => {
+  startScreen.classList.remove("hide");
+  displayContainer.classList.add("hide");
+};
